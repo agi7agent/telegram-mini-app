@@ -3,43 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Санаторий TeleSan</title>
-    <!-- Подключение CSS -->
-    <link rel="stylesheet" href="style.css">
+    <title>MRIYA RESORT & SPA</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Шапка приложения -->
-    <header>
-        <h1>Добро пожаловать, <span id="username">Имя пользователя</span>!</h1>
-        <p>Санаторий TeleSan</p>
-    </header>
-
-    <!-- Главная страница -->
-    <div class="container">
-        <!-- Фото санатория -->
-        <img src="https://via.placeholder.com/600x300" alt="Санаторий">
-
-        <!-- Кнопка "Забронировать" -->
-        <button id="bookButton">Забронировать</button>
-
-        <!-- Статистика -->
-        <div class="statistics">
-            <div class="stat-card">
-                <h3>Бронирования за неделю</h3>
-                <p id="bookingsWeek">20</p>
-            </div>
-            <div class="stat-card">
-                <h3>Общий доход</h3>
-                <p id="totalIncome">$5000</p>
-            </div>
-        </div>
-
-        <!-- Кнопка "Контакты" -->
-        <button id="contactsButton">Контакты</button>
+    <div class="header">
+        <h1>MRIYA RESORT & SPA</h1>
+        <img src="https://example.com/hotel-photo.jpg" class="hotel-photo" alt="Фото санатория">
+        <p>Добро пожаловать, <span id="username">Гость</span>!</p>
     </div>
 
-    <!-- Подключение библиотеки @twa/sdk -->
-    <script src="https://cdn.jsdelivr.net/npm/@twa/sdk/dist/web.js"></script>
-    <script src="script.js"></script>
+    <div class="button-group">
+        <button class="tg-button" onclick="showAbout()">О санатории</button>
+        <button class="tg-button" onclick="openBookingForm()">Забронировать</button>
+        <button class="tg-button" onclick="showContacts()">Контакты</button>
+    </div>
+
+    <div class="services-list" id="aboutSection">
+        <h3>Наши услуги:</h3>
+        <ul>
+            <li>Лечебные процедуры</li>
+            <li>SPA-комплекс</li>
+            <li>Тренажерный зал</li>
+            <li>Экскурсионная программа</li>
+        </ul>
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
