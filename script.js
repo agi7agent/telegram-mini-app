@@ -1,35 +1,62 @@
-// Инициализация SDK
-if (window.Telegram && window.Telegram.WebApp) {
-    const WebApp = window.Telegram.WebApp;
-
-    // Автоматическое раскрытие на весь экран
-    WebApp.ready();
-    WebApp.expand();
-
-    // Использование данных пользователя из Telegram
-    const user = WebApp.initDataUnsafe ? JSON.parse(WebApp.initDataUnsafe) : {};
-    document.getElementById('username').textContent = user.first_name || 'Гость';
-
-    // Настройка MainButton в нижней панели
-    WebApp.MainButton.setText('Забронировать');
-    WebApp.MainButton.show();
-    WebApp.MainButton.onClick(() => openBookingForm());
+:root {
+    --tg-theme-bg-color: #ffffff;
+    --tg-theme-text-color: #000000;
+    --tg-theme-button-color: #2481cc;
+    --tg-theme-button-text-color: #ffffff;
+    --tg-theme-section-bg-color: #f4f4f4;
 }
 
-// Обработчик клика на кнопку "Забронировать"
-document.getElementById('bookButton').onclick = () => openBookingForm();
-
-function openBookingForm() {
-    const formData = {
-        action: 'booking',
-        date: new Date().toISOString()
-    };
-    WebApp.sendData(JSON.stringify(formData));
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--tg-theme-bg-color);
+    color: var(--tg-theme-text-color);
+    padding: 20px;
+    margin: 0;
 }
 
-// Обработчик клика на кнопку "Контакты"
-document.getElementById('contactsButton').onclick = () => showContacts();
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
 
-function showContacts() {
-    alert('Телефон для связи: +7 (999) 123-45-67');
+.hotel-photo {
+    width: 100%;
+    max-width: 600px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin: 0 auto 20px;
+    display: block;
+}
+
+.button-group {
+    display: grid;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.tg-button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: var(--tg-theme-button-color);
+    color: var(--tg-theme-button-text-color);
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.services-list {
+    background: var(--tg-theme-section-bg-color);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .hotel-photo {
+        height: 150px;
+    }
 }
