@@ -1,17 +1,63 @@
+/* Использование CSS-переменных Telegram */
+:root {
+    --tg-color-primary: var(--tg-theme-button-color, #ffffff);
+    --tg-color-secondary: var(--tg-theme-bg-color, #f2f2f2);
+    --tg-color-text: var(--tg-theme-text-color, #000000);
+}
+
+/* Общие стили */
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin-top: 50px;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--tg-color-secondary);
+    color: var(--tg-color-text);
 }
+
+header {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--tg-color-primary);
+    color: var(--tg-color-text);
+}
+
+.container {
+    padding: 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
 button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  background-color: #0088cc;
-  color: white;
-  border: none;
-  border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: var(--tg-color-primary);
+    color: var(--tg-color-text);
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
+
 button:hover {
-  background-color: #005f99;
+    background-color: #005f99;
+}
+
+.statistics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.stat-card {
+    flex: 1 1 calc(50% - 20px);
+    background-color: var(--tg-color-primary);
+    color: var(--tg-color-text);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
 }
