@@ -26,6 +26,7 @@ body {
     object-fit: cover;
     border-radius: 12px;
     margin: 0 auto 20px;
+    display: unblock;
     }
 
 .button-group {
@@ -51,7 +52,7 @@ body {
     padding: 20px;
     border-radius: 12px;
     margin-bottom: 20px;
-    display: none;
+    display: yes;
 }
 
 @media (max-width: 480px) {
