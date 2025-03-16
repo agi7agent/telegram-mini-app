@@ -1,62 +1,48 @@
-:root {
-    --tg-theme-bg-color: #ffffff;
-    --tg-theme-text-color: #000000;
-    --tg-theme-button-color: #2481cc;
-    --tg-theme-button-text-color: #ffffff;
-    --tg-theme-section-bg-color: #f4f4f4;
+  // Инициализация Telegram Web App
+const tg = window.Telegram.WebApp;
+
+// Основные настройки приложения
+function initApp() {
+    tg.expand();
+    tg.MainButton.setText("Мои бронирования").show();
+    
+    // Заполнение имени пользователя
+    const usernameElement = document.getElementById('username');
+    usernameElement.textContent = tg.initDataUnsafe.user?.first_name || 'Гость';
 }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: var(--tg-theme-bg-color);
-    color: var(--tg-theme-text-color);
-    padding: 20px;
-    margin: 0;
+// Показ информации о санатории
+function showAbout() {
+    const aboutSection = document.getElementById('aboutSection');
+    aboutSection.style.display = 'block';
+    tg.viewportStableHeight = document.documentElement.scrollHeight;
 }
 
-.header {
-    text-align: center;
-    margin-bottom: 30px;
+// Открытие формы бронирования
+function openBookingForm() {
+    const bookingData = {
+        action: 'new_booking',
+        userId: tg.initDataUnsafe.user?.id,
+        timestamp: new Date().toISOString()
+    };
+    
+    tg.sendData(JSON.stringify(bookingData));
+    tg.showPopup({
+        title: 'Успешно!',
+        message: 'Ваша заявка принята',
+        buttons: [{ type: 'ok' }]
+    });
 }
 
-.hotel-photo {
-    width: 100%;
-    max-width: 600px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin: 0 auto 20px;
-    display: block;
+// Показ контактной информации
+function showContacts() {
+    tg.showAlert('Контактная информация:\nТелефон: +7 977 880-08-02\nАдрес: ул. Курортная, 15');
 }
 
-.button-group {
-    display: grid;
-    gap: 15px;
-    margin-bottom: 25px;
-}
+// Обработчик изменения размера окна
+window.addEventListener('resize', () => {
+    tg.viewportStableHeight = window.innerHeight;
+});
 
-.tg-button {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    background: var(--tg-theme-button-color);
-    color: var(--tg-theme-button-text-color);
-    font-weight: 500;
-    cursor: pointer;
-    transition: opacity 0.2s;
-}
-
-.services-list {
-    background: var(--tg-theme-section-bg-color);
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    display: none;
-}
-
-@media (max-width: 480px) {
-    .hotel-photo {
-        height: 150px;
-    }
-}
+// Инициализация приложения после загрузки
+document.addEventListener('DOMContentLoaded', initApp);
