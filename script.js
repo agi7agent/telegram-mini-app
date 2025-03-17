@@ -1,48 +1,34 @@
-  // Инициализация Telegram Web App
-const tg = window.Telegram.WebApp;
+document.addEventListener('DOMContentLoaded', () => {
+    // Инициализация Telegram WebApp
+    const tg = window.Telegram.WebApp;
 
-// Основные настройки приложения
-function initApp() {
-    tg.expand();
-    tg.MainButton.setText("Мои бронирования").show();
-    
-    // Заполнение имени пользователя
-    const usernameElement = document.getElementById('username');
-    usernameElement.textContent = tg.initDataUnsafe.user?.first_name || 'Гость';
-}
+    // Получение данных пользователя
+    const initData = new URLSearchParams(tg.initDataUnsafe);
+    const user = JSON.parse(initData.get('user'));
+    const displayName = user?.first_name || user?.username || 'Гость';
 
-// Показ информации о санатории
-function showAbout() {
-    const aboutSection = document.getElementById('aboutSection');
-    aboutSection.style.display = 'block';
-    tg.viewportStableHeight = document.documentElement.scrollHeight;
-}
+    // Отображение имени пользователя
+    document.getElementById('username').textContent = displayName;
 
-// Открытие формы бронирования
-function openBookingForm() {
-    const bookingData = {
-        action: 'new_booking',
-        userId: tg.initDataUnsafe.user?.id,
-        timestamp: new Date().toISOString()
-    };
-    
-    tg.sendData(JSON.stringify(bookingData));
-    tg.showPopup({
-        title: 'Успешно!',
-        message: 'Ваша заявка принята',
-        buttons: [{ type: 'ok' }]
-    });
-}
-
-// Показ контактной информации
-function showContacts() {
-    tg.showAlert('Контактная информация:\nТелефон: +7 977 880-08-02\nАдрес: ул. Курортная, 15');
-}
-
-// Обработчик изменения размера окна
-window.addEventListener('resize', () => {
-    tg.viewportStableHeight = window.innerHeight;
+    // Отправка имени пользователя в бота
+    tg.sendData(JSON.stringify({ userName: displayName }));
 });
 
-// Инициализация приложения после загрузки
-document.addEventListener('DOMContentLoaded', initApp);
+// Функция для показа информации о санатории
+function showAbout() {
+    document.getElementById('aboutSection').style.display = 'block';
+    document.getElementById('contactsSection').style.display = 'none';
+}
+
+// Функция для открытия формы бронирования
+function openBookingForm() {
+    if (window.Telegram.WebApp) {
+        window.Telegram.WebApp.openLink('https://forms.gle/example'); // Замените на вашу форму Google Forms
+    }
+}
+
+// Функция для показа контактов
+function showContacts() {
+    document.getElementById('contactsSection').style.display = 'block';
+    document.getElementById('aboutSection').style.display = 'none';
+}
