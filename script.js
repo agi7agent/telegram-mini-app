@@ -20,6 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
     tg.sendData(JSON.stringify({ userName: displayName }));
 });
 
+function doPost(e) {
+  // Обработка данных
+  return ContentService.createTextOutput("OK")
+    .setMimeType(ContentService.MimeType.TEXT);
+}
 // Функция для показа информации о санатории
 function showAbout() {
     document.getElementById('aboutSection').style.display = 'block';
