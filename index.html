@@ -5,13 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MRIYA RESORT & SPA</title>
     <link rel="stylesheet" href="styles.css">
-    <!-- Подключаем скрипт ОДИН РАЗ в head -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        .booking-form {
+            display: none;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
     <div class="header">
         <h1>MRIYA RESORT & SPA</h1>
-        <!-- Исправленная ссылка на изображение -->
         <img 
             src="https://raw.githubusercontent.com/agi7agent/telegram-mini-app/7b227f9474d9b7b376ae2157e898424e6cff0905/Mriya%20630x360.jpg" 
             alt="MRIYA RESORT & SPA" 
@@ -20,38 +39,66 @@
         <p>Добро пожаловать, <span id="username">Гость</span>!</p>
     </div>
 
-    <!-- Остальная разметка без изменений -->
+    <div class="button-group">
+        <button class="tg-button" onclick="showAbout()">О санатории</button>
+        <button class="tg-button" onclick="toggleBookingForm()">Забронировать</button>
+        <button class="tg-button" onclick="showContacts()">Контакты</button>
+    </div>
 
-    <!-- Переносим весь JavaScript в один тег -->
+    <!-- Форма бронирования -->
+    <div class="booking-form" id="bookingForm">
+        <h3>Форма бронирования</h3>
+        <form id="hiddenForm" method="POST" action="ВАШ_ССЫЛКА_НА_GOOGLE_FORM" target="hiddenFrame">
+            <!-- Замените названия полей на реальные из вашей Google Form -->
+            <input type="hidden" name="entry.123456789" id="formName"> <!-- Поле для имени -->
+            <input type="hidden" name="entry.987654321" id="formPhone"> <!-- Поле для телефона -->
+        </form>
+        <iframe name="hiddenFrame" style="display:none;"></iframe>
+
+        <div class="form-group">
+            <label>Имя:</label>
+            <input type="text" id="name" required>
+        </div>
+        <div class="form-group">
+            <label>Телефон:</label>
+            <input type="tel" id="phone" required>
+        </div>
+        <button class="tg-button" onclick="submitBooking()">Отправить заявку</button>
+    </div>
+
+    <!-- Остальные секции -->
+
     <script>
-        // Инициализация Telegram Web App
         document.addEventListener('DOMContentLoaded', function() {
             if (window.Telegram && window.Telegram.WebApp) {
-                // Показываем основную кнопку
                 window.Telegram.WebApp.ready();
-                
-                // Получаем данные пользователя
                 const user = window.Telegram.WebApp.initDataUnsafe.user;
-                
-                // Обновляем приветствие
                 if (user) {
                     const userName = user.first_name || user.username || 'Гость';
                     document.getElementById('username').textContent = userName;
+                    document.getElementById('name').value = userName;
                 }
             }
         });
 
-        // Ваши функции для кнопок
-        function showAbout() {
-            /* ваша реализация */
+        function toggleBookingForm() {
+            const form = document.getElementById('bookingForm');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
         }
-        
-        function openBookingForm() {
-            /* ваша реализация */
-        }
-        
-        function showContacts() {
-            /* ваша реализация */
+
+        function submitBooking() {
+            // Заполняем скрытые поля формы
+            document.getElementById('formName').value = document.getElementById('name').value;
+            document.getElementById('formPhone').value = document.getElementById('phone').value;
+
+            // Отправляем форму
+            document.getElementById('hiddenForm').submit();
+
+            // Показываем подтверждение и очищаем поля
+            alert('Заявка отправлена! Мы свяжемся с вами в ближайшее время.');
+            document.getElementById('name').value = '';
+            document.getElementById('phone').value = '';
+            toggleBookingForm();
         }
     </script>
 </body>
