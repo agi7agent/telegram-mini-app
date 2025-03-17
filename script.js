@@ -1,11 +1,17 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Инициализация Telegram WebApp
-    const tg = window.Telegram.WebApp;
+const tg = window.Telegram.WebApp;
 
-    // Получение данных пользователя
+document.addEventListener('DOMContentLoaded', () => {
+    if (!tg.initDataUnsafe) {
+        console.error("Ошибка: initDataUnsafe не доступен.");
+        return;
+    }
+
     const initData = new URLSearchParams(tg.initDataUnsafe);
     const user = JSON.parse(initData.get('user'));
     const displayName = user?.first_name || user?.username || 'Гость';
+
+    document.getElementById('username').textContent = displayName;
+});
 
     // Отображение имени пользователя
     document.getElementById('username').textContent = displayName;
