@@ -6,15 +6,25 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Извлечение данных пользователя
+    // Парсим данные из initDataUnsafe
     const initData = new URLSearchParams(tg.initDataUnsafe);
-    const user = JSON.parse(initData.get('user'));
-    const displayName = user?.first_name || user?.username || 'Гость';
+    const userParam = initData.get('user'); // Получаем параметр 'user'
 
-    // Отображение имени пользователя
+    let displayName = 'Гость'; // Значение по умолчанию
+
+    if (userParam) {
+        try {
+            const user = JSON.parse(userParam); // Парсим JSON
+            displayName = user?.first_name || user?.username || 'Гость';
+        } catch (error) {
+            console.error("Ошибка при парсинге данных пользователя:", error);
+        }
+    }
+
+    // Отображаем имя пользователя
     document.getElementById('username').textContent = displayName;
 
-    // Отправка имени пользователя в бота
+    // Отправляем имя пользователя в бота
     tg.sendData(JSON.stringify({ userName: displayName }));
 });
 
