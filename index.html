@@ -1,28 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MRIYA RESORT & SPA</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-</head>
-<body>
-    <div class="header">
-        <h1>MRIYA RESORT & SPA</h1>
-        <img 
-            src="https://raw.githubusercontent.com/agi7agent/telegram-mini-app/7b227f9474d9b7b376ae2157e898424e6cff0905/Mriya%20630x360.jpg" 
-            alt="MRIYA RESORT & SPA" 
-            class="hotel-photo"
-        >
-        <p>Добро пожаловать, <span id="username">Гость</span>!</p>
-    </div>
-
-    <div class="button-group">
-        <button class="tg-button" onclick="showAbout()">О санатории</button>
-        <button class="tg-button" onclick="toggleBookingForm()">Забронировать</button>
-        <button class="tg-button" onclick="showContacts()">Контакты</button>
-    </div>
+// ... existing code ...
 
     <!-- Форма бронирования (скрыта по умолчанию) -->
     <div class="booking-form hidden" id="bookingForm">
@@ -33,24 +11,26 @@
         </div>
         <div class="form-group">
             <label>Телефон:</label>
-            <input type="tel" id="phone" required>
+            <input type="tel" id="phone" pattern="[0-9+\s()-]{10,}" title="Пожалуйста, введите корректный номер телефона" required>
+        </div>
+        <div class="form-group">
+            <label>Дата заезда:</label>
+            <input type="date" id="checkIn" required>
+        </div>
+        <div class="form-group">
+            <label>Дата выезда:</label>
+            <input type="date" id="checkOut" required>
+        </div>
+        <div class="form-group">
+            <label>Тип номера:</label>
+            <select id="roomType" required>
+                <option value="">Выберите тип номера</option>
+                <option value="standard">Стандарт</option>
+                <option value="deluxe">Делюкс</option>
+                <option value="suite">Люкс</option>
+            </select>
         </div>
         <button class="tg-button" onclick="submitBooking()">Отправить заявку</button>
     </div>
 
-    <!-- Секция "О санатории" -->
-    <div id="aboutSection" class="hidden">
-        <h3>О санатории</h3>
-        <p>Мы предлагаем лучший отдых в Крыму!</p>
-    </div>
-
-    <!-- Секция "Контакты" -->
-    <div id="contactsSection" class="hidden">
-        <h3>Контакты</h3>
-        <p>Телефон: +7 (123) 456-78-90</p>
-        <p>Email: info@mriya-resort.com</p>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+// ... existing code ...
