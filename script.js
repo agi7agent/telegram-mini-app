@@ -1,34 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Инициализация Telegram Web App
     const tg = window.Telegram.WebApp;
     tg.ready();
-    tg.expand(); // Раскрываем приложение на весь экран
+    tg.expand();
 
+    // Установка имени пользователя
     let displayName = 'Гость';
-    
-    // Получаем данные пользователя напрямую
     if (tg.initDataUnsafe?.user) {
         const user = tg.initDataUnsafe.user;
         displayName = user.first_name || user.username || 'Гость';
     }
-
-    // Отображаем имя
     document.getElementById('username').textContent = displayName;
-});
-document.addEventListener('DOMContentLoaded', () => {
-    // ... ваш код с именем пользователя ...
 
-    // Скрываем все секции при загрузке
+    // Скрытие всех секций при загрузке
     document.getElementById('bookingForm').classList.add('hidden');
     document.getElementById('aboutSection').classList.add('hidden');
     document.getElementById('contactsSection').classList.add('hidden');
 });
 
-// Функция для переключения формы бронирования
+// Функции управления видимостью секций
 function toggleBookingForm() {
     const form = document.getElementById('bookingForm');
-    form.classList.toggle('hidden'); // Переключаем видимость
+    form.classList.toggle('hidden');
     
-    // Скрываем другие секции
+    // Гарантированное скрытие других секций
     document.getElementById('aboutSection').classList.add('hidden');
     document.getElementById('contactsSection').classList.add('hidden');
+}
+
+function showAbout() {
+    document.getElementById('aboutSection').classList.remove('hidden');
+    document.getElementById('bookingForm').classList.add('hidden');
+    document.getElementById('contactsSection').classList.add('hidden');
+}
+
+function showContacts() {
+    document.getElementById('contactsSection').classList.remove('hidden');
+    document.getElementById('bookingForm').classList.add('hidden');
+    document.getElementById('aboutSection').classList.add('hidden');
 }
