@@ -17,17 +17,62 @@ document.addEventListener('DOMContentLoaded', () => {
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('checkIn').min = today;
         document.getElementById('checkOut').min = today;
+
+        // Инициализация начального состояния
+        initializePageState();
     } catch (error) {
         console.error('Ошибка инициализации Telegram Web App:', error);
     }
+});
 
-    // Скрытие всех секций при загрузке
+// Функция инициализации состояния страницы
+function initializePageState() {
+    // Скрываем все секции кроме главной
     document.getElementById('bookingForm').classList.add('hidden');
     document.getElementById('aboutSection').classList.add('hidden');
     document.getElementById('contactsSection').classList.add('hidden');
-});
+}
 
-// ... existing code ...
+// Функции управления видимостью секций
+function toggleBookingForm() {
+    const form = document.getElementById('bookingForm');
+    const isFormVisible = !form.classList.contains('hidden');
+    
+    // Если форма уже видна, скрываем её
+    if (isFormVisible) {
+        form.classList.add('hidden');
+        return;
+    }
+    
+    // Если форма скрыта, показываем её и скрываем другие секции
+    form.classList.remove('hidden');
+    document.getElementById('aboutSection').classList.add('hidden');
+    document.getElementById('contactsSection').classList.add('hidden');
+}
+
+function showAbout() {
+    document.getElementById('aboutSection').classList.remove('hidden');
+    document.getElementById('bookingForm').classList.add('hidden');
+    document.getElementById('contactsSection').classList.add('hidden');
+}
+
+function showContacts() {
+    document.getElementById('contactsSection').classList.remove('hidden');
+    document.getElementById('bookingForm').classList.add('hidden');
+    document.getElementById('aboutSection').classList.add('hidden');
+}
+
+// Функция для показа/скрытия индикатора загрузки
+function toggleLoading(show) {
+    const submitButton = document.querySelector('.booking-form .tg-button');
+    if (show) {
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'Отправка...';
+    } else {
+        submitButton.disabled = false;
+        submitButton.innerHTML = 'Отправить заявку';
+    }
+}
 
 // Функция для валидации дат
 function validateDates() {
@@ -39,28 +84,6 @@ function validateDates() {
         return false;
     }
     return true;
-}
-
-// Функция для отправки данных в Google Forms
-async function submitToGoogleForm(formData) {
-    // Замените URL на ваш Google Form URL
-    const formUrl = 'YOUR_GOOGLE_FORM_URL';
-    
-    try {
-        const response = await fetch(formUrl, {
-            method: 'POST',
-            body: formData
-        });
-        
-        if (!response.ok) {
-            throw new Error('Ошибка отправки формы');
-        }
-        
-        return true;
-    } catch (error) {
-        console.error('Ошибка при отправке в Google Forms:', error);
-        return false;
-    }
 }
 
 async function submitBooking() {
@@ -88,33 +111,21 @@ async function submitBooking() {
     try {
         toggleLoading(true);
         
-        // Создаем FormData для отправки
-        const formData = new FormData();
-        formData.append('entry.1234567890', name); // Замените на реальные ID полей Google Form
-        formData.append('entry.1234567891', phone);
-        formData.append('entry.1234567892', checkIn);
-        formData.append('entry.1234567893', checkOut);
-        formData.append('entry.1234567894', roomType);
+        // Здесь будет отправка данных в Google Forms
+        // Временная имитация для демонстрации
+        await new Promise(resolve => setTimeout(resolve, 1500));
         
-        // Отправляем данные в Google Forms
-        const success = await submitToGoogleForm(formData);
+        // Очистка формы
+        document.getElementById('name').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('checkIn').value = '';
+        document.getElementById('checkOut').value = '';
+        document.getElementById('roomType').value = '';
         
-        if (success) {
-            // Очистка формы
-            document.getElementById('name').value = '';
-            document.getElementById('phone').value = '';
-            document.getElementById('checkIn').value = '';
-            document.getElementById('checkOut').value = '';
-            document.getElementById('roomType').value = '';
-            
-            // Скрытие формы
-            document.getElementById('bookingForm').classList.add('hidden');
-            
-            // Показываем сообщение об успехе
-            alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
-        } else {
-            throw new Error('Ошибка отправки формы');
-        }
+        // Скрытие формы
+        document.getElementById('bookingForm').classList.add('hidden');
+        
+        alert('Спасибо! Ваша заявка отправлена. Мы свяжемся с вами в ближайшее время.');
     } catch (error) {
         console.error('Ошибка при отправке формы:', error);
         alert('Произошла ошибка при отправке формы. Пожалуйста, попробуйте позже.');
