@@ -1,41 +1,83 @@
-// ... existing code ...
+/* Удаляем дублирующий класс .hidden */
+.hidden {
+    display: none !important;
+}
 
-.form-group select {
+/* Общие стили */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.header {
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    color: #0088cc;
+    margin-bottom: 20px;
+}
+
+.hotel-photo {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
+    max-width: 630px;
+    height: auto;
+    border-radius: 8px;
+    margin: 20px auto;
+    display: block;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.tg-button {
+    background-color: #0088cc;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
     font-size: 16px;
-    background-color: white;
-}
-
-.form-group select:focus {
-    outline: none;
-    border-color: #0088cc;
-    box-shadow: 0 0 0 2px rgba(0, 136, 204, 0.2);
-}
-
-.form-group input[type="date"] {
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 16px;
+    max-width: 300px;
+    margin: 0 auto;
 }
 
-.form-group input[type="date"]:focus {
-    outline: none;
-    border-color: #0088cc;
-    box-shadow: 0 0 0 2px rgba(0, 136, 204, 0.2);
+.back-button {
+    background-color: #666;
+    margin-bottom: 20px;
+    width: auto;
+    padding: 8px 16px;
 }
 
-.tg-button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
+.tg-button:hover {
+    background-color: #006699;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-// ... existing code ...
+.booking-form {
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 400px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+// ... rest of the CSS stays the same ...
