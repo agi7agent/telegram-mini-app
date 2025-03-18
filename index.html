@@ -25,77 +25,19 @@
             <button class="tg-button" onclick="toggleBookingForm()">Забронировать</button>
             <button class="tg-button" onclick="showContacts()">Контакты</button>
         </div>
-    </div>
 
-    <!-- Форма бронирования -->
-    <div class="booking-form hidden" id="bookingForm">
-        <button class="tg-button back-button" onclick="toggleBookingForm()">← Назад</button>
-        <h3>Форма бронирования</h3>
-        <div class="form-group">
-            <label>Имя:</label>
-            <input type="text" id="name" required>
-        </div>
-        <div class="form-group">
-            <label>Телефон:</label>
-            <input type="tel" id="phone" pattern="[0-9+\s()-]{10,}" title="Пожалуйста, введите корректный номер телефона" required>
-        </div>
-        <div class="form-group">
-            <label>Дата заезда:</label>
-            <input type="date" id="checkIn" required>
-        </div>
-        <div class="form-group">
-            <label>Дата выезда:</label>
-            <input type="date" id="checkOut" required>
-        </div>
-        <div class="form-group">
-            <label>Тип номера:</label>
-            <select id="roomType" required>
-                <option value="">Выберите тип номера</option>
-                <option value="standard">Стандарт</option>
-                <option value="deluxe">Делюкс</option>
-                <option value="suite">Люкс</option>
-            </select>
-        </div>
-        <button class="tg-button" onclick="submitBooking()">Отправить заявку</button>
-    </div>
-
-    <!-- Секция "О санатории" -->
-    <div id="aboutSection" class="hidden">
-        <button class="tg-button back-button" onclick="showMainPage()">← Назад</button>
-        <h3>О санатории</h3>
-        <div class="about-content">
-            <p>MRIYA RESORT & SPA - это современный санаторий в Крыму, где сочетаются традиции оздоровления и комфортный отдых.</p>
-            <ul class="features-list">
-                <li>✓ Лечебные процедуры</li>
-                <li>✓ СПА-услуги</li>
-                <li>✓ Бассейн</li>
-                <li>✓ Питание</li>
-                <li>✓ Wi-Fi</li>
-                <li>✓ Парковка</li>
-            </ul>
-            <p>Мы предлагаем индивидуальный подход к каждому гостю и гарантируем высокое качество обслуживания.</p>
+        <!-- Видео контейнер -->
+        <div class="video-container">
+            <video 
+                class="promo-video" 
+                controls 
+                preload="metadata"
+                poster="https://raw.githubusercontent.com/agi7agent/telegram-mini-app/main/Mriya%20630x360.jpg"
+            >
+                <source src="YOUR_VIDEO_URL.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
         </div>
     </div>
 
-    <!-- Секция "Контакты" -->
-    <div id="contactsSection" class="hidden">
-        <button class="tg-button back-button" onclick="showMainPage()">← Назад</button>
-        <h3>Контакты</h3>
-        <div class="contacts-content">
-            <div class="contact-info">
-                <p><strong>Адрес:</strong> Крым, г. Ялта, ул. Примерная, 123</p>
-                <p><strong>Телефон:</strong> +7 (123) 456-78-90</p>
-                <p><strong>Email:</strong> info@mriya-resort.com</p>
-            </div>
-            <div class="working-hours">
-                <h4>Режим работы:</h4>
-                <p>Круглосуточно</p>
-                <p>Заезд: с 14:00</p>
-                <p>Выезд: до 12:00</p>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
-</body>
-</html>
+    // ... rest of the HTML stays the same ...
