@@ -14,3 +14,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Отображаем имя
     document.getElementById('username').textContent = displayName;
 });
+document.addEventListener('DOMContentLoaded', () => {
+    // ... ваш код с именем пользователя ...
+
+    // Скрываем все секции при загрузке
+    document.getElementById('bookingForm').classList.add('hidden');
+    document.getElementById('aboutSection').classList.add('hidden');
+    document.getElementById('contactsSection').classList.add('hidden');
+});
+
+// Функция для переключения формы бронирования
+function toggleBookingForm() {
+    const form = document.getElementById('bookingForm');
+    form.classList.toggle('hidden'); // Переключаем видимость
+    
+    // Скрываем другие секции
+    document.getElementById('aboutSection').classList.add('hidden');
+    document.getElementById('contactsSection').classList.add('hidden');
+}
