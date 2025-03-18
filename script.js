@@ -36,6 +36,14 @@ function initializePageState() {
     document.getElementById('contactsSection').classList.add('hidden');
 }
 
+// Функция возврата на главную страницу
+function showMainPage() {
+    document.getElementById('mainPage').style.display = 'block';
+    document.getElementById('bookingForm').classList.add('hidden');
+    document.getElementById('aboutSection').classList.add('hidden');
+    document.getElementById('contactsSection').classList.add('hidden');
+}
+
 // Функции управления видимостью секций
 function toggleBookingForm() {
     const form = document.getElementById('bookingForm');
@@ -76,4 +84,4 @@ function showContacts() {
     document.getElementById('aboutSection').classList.add('hidden');
 }
 
-// ... rest of the code stays the same ...
+// ... rest of the JavaScript stays the same ...
