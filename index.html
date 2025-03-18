@@ -13,10 +13,9 @@
         <div class="header">
             <h1>MRIYA RESORT & SPA</h1>
             <img 
-                src="https://imgur.com/XYZ123.jpg" 
+                src="https://raw.githubusercontent.com/agi7agent/telegram-mini-app/main/Mriya%20630x360.jpg" 
                 alt="MRIYA RESORT & SPA" 
                 class="hotel-photo"
-                onerror="this.src='https://via.placeholder.com/630x360?text=MRIYA+RESORT'"
             >
             <p>Добро пожаловать, <span id="username">Гость</span>!</p>
         </div>
@@ -30,6 +29,7 @@
 
     <!-- Форма бронирования -->
     <div class="booking-form hidden" id="bookingForm">
+        <button class="tg-button back-button" onclick="toggleBookingForm()">← Назад</button>
         <h3>Форма бронирования</h3>
         <div class="form-group">
             <label>Имя:</label>
@@ -61,6 +61,7 @@
 
     <!-- Секция "О санатории" -->
     <div id="aboutSection" class="hidden">
+        <button class="tg-button back-button" onclick="showMainPage()">← Назад</button>
         <h3>О санатории</h3>
         <div class="about-content">
             <p>MRIYA RESORT & SPA - это современный санаторий в Крыму, где сочетаются традиции оздоровления и комфортный отдых.</p>
@@ -78,6 +79,7 @@
 
     <!-- Секция "Контакты" -->
     <div id="contactsSection" class="hidden">
+        <button class="tg-button back-button" onclick="showMainPage()">← Назад</button>
         <h3>Контакты</h3>
         <div class="contacts-content">
             <div class="contact-info">
