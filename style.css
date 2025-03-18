@@ -1,3 +1,6 @@
+.hidden {
+    display: none !important;
+}
 /* Общие стили */
 body {
     margin: 0;
