@@ -95,8 +95,8 @@ async function submitBooking() {
             roomType: document.getElementById('roomType').value
         };
 
-        // Замените URL на ваш Web App URL из Google Apps Script
-        const response = await fetch('https://script.google.com/macros/s/AKfycby0bgotxNnhHHkaoxHnU6bO7shOtZIgR3ULLUOAbOaRgSe78409BTSYPteqSYdi4T75/exec', {
+        // URL вашего Google Apps Script
+        const response = await fetch('https://script.google.com/macros/s/AKfycbxwkME-ZCt6gy59nZ-Q6AtjOsN5ewjTXDvdzde_eKvqpF-CJwOiyT3b5UJl09JNzZ5S/exec', {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: {
@@ -104,7 +104,9 @@ async function submitBooking() {
             }
         });
 
-        if (response.ok) {
+        const result = await response.json();
+
+        if (result.result === 'success') {
             alert('Ваша заявка успешно отправлена!');
             // Очищаем форму
             document.getElementById('name').value = '';
@@ -122,5 +124,3 @@ async function submitBooking() {
         alert('Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже.');
     }
 }
-
-// ... rest of the JavaScript stays the same ...
