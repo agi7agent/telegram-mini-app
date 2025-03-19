@@ -1,10 +1,3 @@
-
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
     try {
         // Инициализация Telegram Web App
@@ -106,7 +99,7 @@ async function submitBooking() {
         };
 
         // Замените URL на ваш Web App URL из Google Apps Script
-        const response = await fetch('ВАШ_URL_GOOGLE_APPS_SCRIPT', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbz0FYbCPyKQPMbsoVEO8XYZFW5vvOnAbCHJ6JkrDR0heZqVL8vooYe3VAhxmSK8XwQ7/exec', {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: {
