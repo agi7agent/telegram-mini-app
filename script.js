@@ -96,7 +96,7 @@ async function submitBooking() {
         };
 
         // Замените URL на ваш Web App URL из Google Apps Script
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxsK8LSkRYqx4PzBhD3VLQAX-Ec4fYHYU50hgklnQXew9ygacZ9pz995ZPGyFh3k5Ps/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycby0bgotxNnhHHkaoxHnU6bO7shOtZIgR3ULLUOAbOaRgSe78409BTSYPteqSYdi4T75/exec', {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: {
