@@ -69,7 +69,7 @@ async function submitBooking() {
         }
 
         // Отправка данных (ваш URL скрипта)
-        const response = await fetch('ВАШ_URL_СКРИПТА', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbx92h1KULtoTltt0PVG3-cG10EO68Ztz_DJHU101aMiH9bH_Z979CCD87gBNjeH_P2N/exec', {
             method: 'POST',
             mode: 'no-cors',
             headers: {
