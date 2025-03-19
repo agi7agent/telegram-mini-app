@@ -23,7 +23,7 @@ async function submitBooking() {
         formData.append('entry.1166974658', checkOut);
         
         // Отправляем данные в Google Forms
-        const response = await fetch('https://docs.google.com/forms/d/e/1FAIpQLScRMbsLMG-7qAjLh6dSXcjQyfBEv0srVcfO6yjrS-UqXRKc6Q/formResponse', {
+        const response = await fetch('https://docs.google.com/forms/d/e/1FAIpQLScRMbsLMG-7qAjLh6dSXcjQyfBEv0srVcfO6yjrS-UqXRKc6Q/viewform?usp=header', {
             method: 'POST',
             body: formData
         });
