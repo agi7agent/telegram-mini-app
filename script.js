@@ -14,9 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Отображаем имя
     document.getElementById('username').textContent = displayName;
 });
-
-        
-        
+    
 
         // Установка минимальной даты для полей дат
         const today = new Date().toISOString().split('T')[0];
