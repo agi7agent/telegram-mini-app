@@ -5,13 +5,21 @@ document.addEventListener('DOMContentLoaded', () => {
         tg.ready();
         tg.expand();
 
-        // Установка имени пользователя
-        let displayName = 'Гость';
-        if (tg.initDataUnsafe?.user) {
-            const user = tg.initDataUnsafe.user;
-            displayName = user.first_name || user.username || 'Гость';
-        }
-        document.getElementById('username').textContent = displayName;
+       let displayName = 'Гость';
+    
+    // Получаем данные пользователя напрямую
+    if (tg.initDataUnsafe?.user) {
+        const user = tg.initDataUnsafe.user;
+        displayName = user.first_name || user.username || 'Гость';
+    }
+
+    // Отображаем имя
+    document.getElementById('username').textContent = displayName;
+});
+
+
+        
+        
 
         // Установка минимальной даты для полей дат
         const today = new Date().toISOString().split('T')[0];
