@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    try {
-        // Инициализация Telegram Web App
-        const tg = window.Telegram.WebApp;
-        tg.ready();
-        tg.expand();
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+    tg.expand(); // Раскрываем приложение на весь экран
 
-       let displayName = 'Гость';
+    let displayName = 'Гость';
     
     // Получаем данные пользователя напрямую
     if (tg.initDataUnsafe?.user) {
@@ -16,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Отображаем имя
     document.getElementById('username').textContent = displayName;
 });
-
 
         
         
