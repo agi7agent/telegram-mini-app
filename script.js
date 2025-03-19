@@ -84,9 +84,6 @@ function showContacts() {
     document.getElementById('aboutSection').classList.add('hidden');
 }
 
-
-// ... existing code ...
-
 async function submitBooking() {
     try {
         // Получаем данные формы
@@ -99,7 +96,7 @@ async function submitBooking() {
         };
 
         // Замените URL на ваш Web App URL из Google Apps Script
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxsK8LSkRYqx4PzBhD3VLQAX-Ec4fYHYU50hgklnQXew9ygacZ9pz995ZPGyFh3k5Ps/exec', {
+        const response = await fetch('ВАШ_URL_GOOGLE_APPS_SCRIPT', {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: {
@@ -125,6 +122,5 @@ async function submitBooking() {
         alert('Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже.');
     }
 }
-
 
 // ... rest of the JavaScript stays the same ...
