@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     try {
         // Инициализация Telegram Web App
@@ -83,5 +90,48 @@ function showContacts() {
     document.getElementById('bookingForm').classList.add('hidden');
     document.getElementById('aboutSection').classList.add('hidden');
 }
+
+
+// ... existing code ...
+
+async function submitBooking() {
+    try {
+        // Получаем данные формы
+        const formData = {
+            name: document.getElementById('name').value,
+            phone: document.getElementById('phone').value,
+            checkIn: document.getElementById('checkIn').value,
+            checkOut: document.getElementById('checkOut').value,
+            roomType: document.getElementById('roomType').value
+        };
+
+        // Замените URL на ваш Web App URL из Google Apps Script
+        const response = await fetch('ВАШ_URL_GOOGLE_APPS_SCRIPT', {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response.ok) {
+            alert('Ваша заявка успешно отправлена!');
+            // Очищаем форму
+            document.getElementById('name').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('checkIn').value = '';
+            document.getElementById('checkOut').value = '';
+            document.getElementById('roomType').value = '';
+            // Возвращаемся на главную страницу
+            showMainPage();
+        } else {
+            throw new Error('Ошибка при отправке данных');
+        }
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже.');
+    }
+}
+
 
 // ... rest of the JavaScript stays the same ...
