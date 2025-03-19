@@ -1,90 +1,74 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const tg = window.Telegram.WebApp;
-    tg.ready();
-    tg.expand(); // Раскрываем приложение на весь экран
+    try {
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
 
-    let displayName = 'Гость';
-    
-    // Получаем данные пользователя напрямую
-    if (tg.initDataUnsafe?.user) {
-        const user = tg.initDataUnsafe.user;
-        displayName = user.first_name || user.username || 'Гость';
-    }
+        // Установка имени пользователя
+        let displayName = 'Гость';
+        if (tg.initDataUnsafe?.user) {
+            const user = tg.initDataUnsafe.user;
+            displayName = user.first_name || user.username || 'Гость';
+        }
+        document.getElementById('username').textContent = displayName;
 
-    // Отображаем имя
-    document.getElementById('username').textContent = displayName;
-});
-    
-
-        // Установка минимальной даты для полей дат
+        // Установка минимальной даты (если такие поля есть в HTML)
         const today = new Date().toISOString().split('T')[0];
-        document.getElementById('checkIn').min = today;
-        document.getElementById('checkOut').min = today;
+        const checkInField = document.getElementById('checkIn');
+        const checkOutField = document.getElementById('checkOut');
+        if (checkInField) checkInField.min = today;
+        if (checkOutField) checkOutField.min = today;
 
-        // Инициализация начального состояния
+        // Инициализация состояний
         initializePageState();
     } catch (error) {
-        console.error('Ошибка инициализации Telegram Web App:', error);
+        console.error('Ошибка инициализации:', error);
     }
 });
 
-// Функция инициализации состояния страницы
+// Функция инициализации состояний
 function initializePageState() {
-    // Показываем главную страницу
-    document.getElementById('mainPage').style.display = 'block';
-    
-    // Скрываем все остальные секции
-    document.getElementById('bookingForm').classList.add('hidden');
-    document.getElementById('aboutSection').classList.add('hidden');
-    document.getElementById('contactsSection').classList.add('hidden');
-}
-
-// Функция возврата на главную страницу
-function showMainPage() {
-    document.getElementById('mainPage').style.display = 'block';
-    document.getElementById('bookingForm').classList.add('hidden');
-    document.getElementById('aboutSection').classList.add('hidden');
-    document.getElementById('contactsSection').classList.add('hidden');
-}
-
-// Функции управления видимостью секций
-function toggleBookingForm() {
-    const form = document.getElementById('bookingForm');
     const mainPage = document.getElementById('mainPage');
-    const isFormVisible = !form.classList.contains('hidden');
-    
-    // Если форма уже видна, скрываем её и показываем главную страницу
-    if (isFormVisible) {
-        form.classList.add('hidden');
-        mainPage.style.display = 'block';
-        return;
+    const bookingForm = document.getElementById('bookingForm');
+    const aboutSection = document.getElementById('aboutSection');
+    const contactsSection = document.getElementById('contactsSection');
+
+    // Проверяем существование элементов
+    if (mainPage && bookingForm && aboutSection && contactsSection) {
+        mainPage.classList.remove('hidden'); // Используем CSS-класс
+        bookingForm.classList.add('hidden');
+        aboutSection.classList.add('hidden');
+        contactsSection.classList.add('hidden');
     }
+}
+
+// Функции управления видимостью
+function toggleBookingForm() {
+    const mainPage = document.getElementById('mainPage');
+    const bookingForm = document.getElementById('bookingForm');
     
-    // Если форма скрыта, показываем её и скрываем главную страницу
-    form.classList.remove('hidden');
-    mainPage.style.display = 'none';
-    document.getElementById('aboutSection').classList.add('hidden');
-    document.getElementById('contactsSection').classList.add('hidden');
+    if (!mainPage || !bookingForm) return;
+
+    const isFormVisible = bookingForm.classList.toggle('hidden');
+    mainPage.classList.toggle('hidden', isFormVisible);
 }
 
 function showAbout() {
     const mainPage = document.getElementById('mainPage');
     const aboutSection = document.getElementById('aboutSection');
     
-    mainPage.style.display = 'none';
-    aboutSection.classList.remove('hidden');
-    document.getElementById('bookingForm').classList.add('hidden');
-    document.getElementById('contactsSection').classList.add('hidden');
+    if (mainPage && aboutSection) {
+        mainPage.classList.add('hidden');
+        aboutSection.classList.remove('hidden');
+    }
 }
 
 function showContacts() {
     const mainPage = document.getElementById('mainPage');
     const contactsSection = document.getElementById('contactsSection');
     
-    mainPage.style.display = 'none';
-    contactsSection.classList.remove('hidden');
-    document.getElementById('bookingForm').classList.add('hidden');
-    document.getElementById('aboutSection').classList.add('hidden');
+    if (mainPage && contactsSection) {
+        mainPage.classList.add('hidden');
+        contactsSection.classList.remove('hidden');
+    }
 }
-
-// ... rest of the JavaScript stays the same ...
