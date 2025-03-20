@@ -95,7 +95,17 @@
             </div>
         </div>
     </div>
-
+<!-- Добавьте это в конец body перед script -->
+<div id="calendarPopup" class="hidden">
+    <div class="calendar-container">
+        <div class="calendar-header">
+            <button onclick="changeMonth(-1)">←</button>
+            <h4 id="currentMonth"></h4>
+            <button onclick="changeMonth(1)">→</button>
+        </div>
+        <div class="calendar-grid" id="calendarDays"></div>
+    </div>
+</div>
     <script src="script.js"></script>
 </body>
 </html>
