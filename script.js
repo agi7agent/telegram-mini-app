@@ -69,7 +69,7 @@ async function submitBooking() {
         }
 
         // Отправка данных в Google Sheets через Apps Script
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxu_0OxMPdFz1c4QVj3zE6V37OiKye3FZf0kDFY70gc9rYdZQb1n5dut-BcAl69gvgH/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyYC4G332I6b-A5rl5OvLVeR7Uzl1p4tAeJQJAclZTyvvlA1NOzJH84L1SnA9Ru4ktO/exec', {
             method: 'POST',
             mode: 'no-cors',
             headers: {
