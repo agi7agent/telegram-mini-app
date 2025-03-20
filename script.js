@@ -102,7 +102,8 @@ async function submitBooking() {
         }
 
         // Отправка данных в Google Sheets через Apps Script
-        const response = await fetch('ВАШ_URL_GOOGLE_APPS_SCRIPT', {
+        const response = await fetch('
+https://script.google.com/macros/s/AKfycby9m2pfrLmGf7S1BRA3lv1aKptSQCFouFX8VK-35FwzC9_coTiG1E80VdmScNxx7m3g/exec', {
             method: 'POST',
             mode: 'no-cors',
             headers: {
