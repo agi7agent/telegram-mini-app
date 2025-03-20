@@ -84,4 +84,50 @@ function showContacts() {
     document.getElementById('aboutSection').classList.add('hidden');
 }
 
+async function submitBooking() {
+    try {
+        // Получаем данные формы
+        const formData = {
+            name: document.getElementById('name').value,
+            phone: document.getElementById('phone').value,
+            checkIn: document.getElementById('checkIn').value,
+            checkOut: document.getElementById('checkOut').value,
+            roomType: document.getElementById('roomType').value
+        };
+
+        // Проверяем заполнение обязательных полей
+        if (!formData.name || !formData.phone || !formData.checkIn || !formData.checkOut || !formData.roomType) {
+            alert('Пожалуйста, заполните все поля');
+            return;
+        }
+
+        // Отправка данных в Google Sheets через Apps Script
+        const response = await fetch('ВАШ_URL_GOOGLE_APPS_SCRIPT', {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams(formData).toString()
+        });
+
+        // Очищаем форму
+        document.getElementById('name').value = '';
+        document.getElementById('phone').value = '';
+        document.getElementById('checkIn').value = '';
+        document.getElementById('checkOut').value = '';
+        document.getElementById('roomType').value = '';
+
+        // Показываем сообщение об успехе
+        alert('Ваша заявка успешно отправлена!');
+        
+        // Возвращаемся на главную страницу
+        showMainPage();
+
+    } catch (error) {
+        console.error('Ошибка:', error);
+        alert('Произошла ошибка при отправке заявки. Пожалуйста, попробуйте позже.');
+    }
+}
+
 // ... rest of the JavaScript stays the same ...
