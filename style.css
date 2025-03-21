@@ -80,7 +80,7 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 .assistant-button {
-  background: #FF4081 !important; /* Розовый цвет для выделения */
+  background: #00ffff !important; /* Цвет для выделения */
   font-weight: bold;
   display: flex;
   align-items: center;
