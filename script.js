@@ -83,5 +83,7 @@ function showContacts() {
     document.getElementById('bookingForm').classList.add('hidden');
     document.getElementById('aboutSection').classList.add('hidden');
 }
-
+function openHelp() {
+  window.Telegram.WebApp.openTelegramLink('tg://resolve?domain=@hotel120325_bot'); // Замените "sana_helper_bot" на username вашего бота
+}
 // ... rest of the JavaScript stays the same ...
